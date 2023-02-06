@@ -1,6 +1,5 @@
 import 'package:cloud_firestore_platform_interface/cloud_firestore_platform_interface.dart';
 import 'package:fake_cloud_firestore/src/util.dart';
-import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 abstract class FakeFieldValue {
   const FakeFieldValue();
@@ -47,8 +46,7 @@ class FieldValueIncrement extends FakeFieldValue {
 }
 
 class FieldValueArrayUnion extends FakeFieldValue {
-  FieldValueArrayUnion(List<dynamic> _elements)
-      : elements = transformDates(_elements);
+  FieldValueArrayUnion(List<dynamic> _elements) : elements = transformDates(_elements);
 
   final List<dynamic> elements;
 
@@ -69,8 +67,7 @@ class FieldValueArrayUnion extends FakeFieldValue {
 }
 
 class FieldValueArrayRemove extends FakeFieldValue {
-  FieldValueArrayRemove(List<dynamic> _elements)
-      : elements = transformDates(_elements);
+  FieldValueArrayRemove(List<dynamic> _elements) : elements = transformDates(_elements);
 
   final List<dynamic> elements;
 
@@ -81,19 +78,13 @@ class FieldValueArrayRemove extends FakeFieldValue {
     // overwritten with an empty array.
     // https://firebase.google.com/docs/reference/js/firebase.firestore.FieldValue#arrayunion
     final updatedValue = previousValue is List ? List.from(previousValue) : [];
-    updatedValue.removeWhere(
-        (item) => elements.any((element) => deepEqual(element, item)));
+    updatedValue.removeWhere((item) => elements.any((element) => deepEqual(element, item)));
     document[key] = updatedValue;
   }
 }
 
 // Mock implementation of a FieldValue. We store values as a simple string.
-class MockFieldValuePlatform
-    with
-        // ignore: invalid_use_of_visible_for_testing_member
-        MockPlatformInterfaceMixin
-    implements
-        FieldValuePlatform {
+class MockFieldValuePlatform implements FieldValuePlatform {
   final FakeFieldValue value;
 
   MockFieldValuePlatform(this.value);
@@ -101,9 +92,7 @@ class MockFieldValuePlatform
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is MockFieldValuePlatform &&
-          runtimeType == other.runtimeType &&
-          value == other.value;
+      other is MockFieldValuePlatform && runtimeType == other.runtimeType && value == other.value;
 
   @override
   int get hashCode => value.hashCode;
