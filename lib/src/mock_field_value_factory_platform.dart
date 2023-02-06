@@ -1,7 +1,7 @@
 import 'package:fake_cloud_firestore/src/mock_field_value_platform.dart';
 import 'package:cloud_firestore_platform_interface/cloud_firestore_platform_interface.dart';
 
-class MockFieldValueFactoryPlatform implements FieldValueFactoryPlatform {
+class MockFieldValueFactoryPlatform extends FieldValueFactoryPlatform {
   @override
   FieldValuePlatform delete() {
     return MockFieldValuePlatform(FakeFieldValue.delete);

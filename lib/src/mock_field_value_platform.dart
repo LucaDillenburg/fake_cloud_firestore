@@ -84,10 +84,10 @@ class FieldValueArrayRemove extends FakeFieldValue {
 }
 
 // Mock implementation of a FieldValue. We store values as a simple string.
-class MockFieldValuePlatform implements FieldValuePlatform {
+class MockFieldValuePlatform extends FieldValuePlatform {
   final FakeFieldValue value;
 
-  MockFieldValuePlatform(this.value);
+  MockFieldValuePlatform(this.value) : super(value);
 
   @override
   bool operator ==(Object other) =>
