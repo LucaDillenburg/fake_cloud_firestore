@@ -6,6 +6,7 @@ import 'package:cloud_firestore_platform_interface/cloud_firestore_platform_inte
 import 'package:fake_firebase_security_rules/fake_firebase_security_rules.dart';
 import 'package:flutter/services.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:mocktail/mocktail.dart';
 
 import 'mock_collection_reference.dart';
 import 'mock_document_reference.dart';
@@ -21,7 +22,7 @@ const allowAllDescription = '''service cloud.firestore {
   }
 }''';
 
-class FakeFirebaseFirestore implements FirebaseFirestore {
+class FakeFirebaseFirestore extends Mock implements FirebaseFirestore {
   final _root = <String, dynamic>{};
   final _docsData = <String, dynamic>{};
   final _snapshotStreamControllerRoot = <String, dynamic>{};
